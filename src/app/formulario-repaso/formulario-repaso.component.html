@@ -1,0 +1,82 @@
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="formUser" (ngSubmit)="procesar()">
+      <!--Nombre-->
+      <div class="mb-2">
+        <label class="form-label">
+          Nombre
+        </label>
+        <input type="text" formControlName="name"  class="form-control" placeholder="Ingrese su nombre">
+        <div class="alert alert-danger mt-2" [hidden]="name.valid || name.pristine">
+          El nombre es obligatorio
+        </div>
+      </div>
+      <!--Apellido-->
+      <div class="mb-2">
+        <label class="form-label">
+          Apellido
+        </label>
+        <input type="text" formControlName="lastname"  class="form-control" placeholder="Ingrese su Apellido">
+        <div class="alert alert-danger mt-2" [hidden]="lastname.valid || lastname.pristine">
+          El nombre  es obligatorio
+        </div>
+      </div>
+      <!--NRC 15397-->
+      <div class="mb-2">
+        <label class="form-label">
+          NRC
+        </label>
+        <input type="text" formControlName="nrc"  class="form-control" placeholder="Ingrese su nrc">
+        <div class="alert alert-danger mt-2" [hidden]="nrc.valid || nrc.pristine">
+          El nrc es obligatorio
+        </div>
+      </div>
+      <!--Email-->
+      <div class="mb-2">
+        <label class="form-label">
+          Email
+        </label>
+        <input type="email" formControlName="email" class="form-control" placeholder="Ingrese su Correo">
+        <div class="alert alert-danger mt-2" [hidden]="email.valid || email.pristine">
+        <span *ngIf="email.errors?.['required']">
+          El email es obligatorio
+        </span>
+          <span *ngIf="email.errors?.['email']">
+          El email debe ser valido
+        </span>
+        </div>
+      </div>
+      <!--Fecha-->
+      <div class="mb-2">
+        <label class="form-label">
+          Fecha
+        </label>
+        <input type="date" formControlName="fecha" class="form-control" placeholder="Ingrese la fecha">
+        <div class="alert alert-danger mt-2" [hidden]="fecha.valid || fecha.pristine">
+          La fecha es obligatoria
+        </div>
+      </div>
+      <button class="btn btn-primary" [disabled]="formUser.invalid">Enviar</button>
+    </form>
+    <table class="table" *ngIf="entries && entries.length">
+      <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>NRC</th>
+        <th>Email</th>
+        <th>Fecha</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let entry of entries">
+        <td>{{ entry.name }}</td>
+        <td>{{ entry.lastname }}</td>
+        <td>{{ entry.nrc }}</td>
+        <td>{{ entry.email }}</td>
+        <td>{{ entry.fecha }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

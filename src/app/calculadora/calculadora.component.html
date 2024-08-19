@@ -1,0 +1,26 @@
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="formCalculadora">
+      <!-- Numero 1 -->
+      <div class="mb-2">
+        <label class="form-label">Numero 1</label>
+        <input type="number" formControlName="number" class="form-control" placeholder="Ingrese su número">
+        <div class="alert alert-danger mt-2" [hidden]="isNumberValid">
+          El número es obligatorio
+        </div>
+      </div>
+      <!-- Numero 2 -->
+      <div class="mb-2">
+        <label class="form-label">Numero 2</label>
+        <input type="number" formControlName="numberDos" class="form-control" placeholder="Ingrese su número">
+        <div class="alert alert-danger mt-2" [hidden]="isNumberDosValid">
+          El número 2 es obligatorio
+        </div>
+      </div>
+      <button class="btn btn-primary" type="button" [disabled]="formCalculadora.invalid" (click)="dividir()">Dividir</button>
+      <button class="btn btn-primary" type="button" [disabled]="formCalculadora.invalid" (click)="multiplicar()">Multiplicar</button>
+    </form>
+    <p>Resultado: {{ resultado }}</p>
+    <textarea class="form-control mt-3" readonly>{{ resultado }}</textarea>
+  </div>
+</div>
